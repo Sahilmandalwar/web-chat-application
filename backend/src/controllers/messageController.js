@@ -44,6 +44,25 @@ export const sendMessage = async (req,res) => {
         const {id:receiverId} = req.params;
         const {text, image, video} = req.body;
 
+        if(!text && !image && !video) {
+            return res.status(400).json({
+                message: "Atleast message must contain text, image or video",
+            })
+        }
+
+        if(senderId === receiverId) {
+            return res.status(400).json({
+                message: "Sender Cannot Send message to own",
+            })
+        }
+
+        let receiverExist = await User.exists({_id: receiverId});
+        if(!receiverExist) {
+            return res.status(404).json({
+                message: "Reciever not found",
+            })
+        }
+
         let imageURL;
         let videoURL;
         if(image) {
