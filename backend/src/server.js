@@ -1,14 +1,23 @@
+import { ENV } from './lib/env.js';
 import express from 'express';
+import cookieParser from "cookie-parser";
+
 import authRoutes from './routes/auth.js';
 import messageRoutes from "./routes/message.js"
-import dotenv from "dotenv";
+
 import path from "path";
+import {connectDB} from './lib/db.js';
 
-dotenv.config();
 
-const PORT = process.env.PORT || 6000;  // process.env.PORT
+
+
+const PORT = ENV.PORT || 6000;  // process.env.PORT
 
 const app = express();
+app.use(express.json());  // to access data under req.body <-- middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
+
 const __dirname = path.resolve();
 
 app.use("/api/auth",authRoutes);
@@ -24,6 +33,8 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
+
 app.listen(PORT, ()=>{
     console.log("server started to listen at port: " + PORT ); 
+    connectDB();
 });
