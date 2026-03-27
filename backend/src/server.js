@@ -8,7 +8,7 @@ import messageRoutes from "./routes/message.js"
 import path from "path";
 import {connectDB} from './lib/db.js';
 
-
+import cors from "cors";
 
 
 const PORT = ENV.PORT || 6000;  // process.env.PORT
@@ -17,6 +17,7 @@ const app = express();
 app.use(express.json());  // to access data under req.body <-- middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
+app.use(cors({origin:ENV.CLIENT_URL, credentials:true}));
 
 const __dirname = path.resolve();
 
