@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useChatStore } from "../store/useChatStore.js";
 import UsersLoadingSkeleton from "./UsersLoadingSkeleton.jsx";
 import { useAuthStore } from "../store/useAuthStore.js";
-// import { useAuthStore } from "../store/useAuthStore.js";
+
 
 function ContactList() {
   const { getAllContacts, allContacts, setSelectedUser, isUsersLoading } =
@@ -25,7 +25,7 @@ function ContactList() {
         >
           <div className="flex items-center gap-3">
             <div
-              className={`avatar ${onlineUsers.includes(contact) ? "avatar-online" : "avatar-offine"} `} // todo : add terniary condition that has includes
+              className={`avatar ${onlineUsers.includes(contact._id) ? "avatar-online" : "avatar-offine"} `} // todo : add terniary condition that has includes
             >
               <div className="size-12 rounded-full">
                 <img src={contact.profilePic || "/avatar.png"} />

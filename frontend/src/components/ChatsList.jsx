@@ -26,7 +26,7 @@ function ChatsList() {
         >
           <div className="flex items-center gap-3">
             <div
-              className={`avatar ${ onlineUsers.includes(getMyChatPartners)? "avatar-online" : "avatar-offine"} `} // todo : add ternery condition that use includes
+              className={`avatar ${ onlineUsers.includes(chat._id)? "avatar-online" : "avatar-offine"} `} // todo : add ternery condition that use includes
             >
               <div className="size-12 rounded-full">
                 <img
