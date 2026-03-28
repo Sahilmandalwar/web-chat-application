@@ -10,11 +10,12 @@ import {connectDB} from './lib/db.js';
 
 import cors from "cors";
 
+import { app, server } from './lib/socket.js';
+
 
 const PORT = ENV.PORT || 6000;  // process.env.PORT
-
-const app = express();
-app.use(express.json());  // to access data under req.body <-- middleware
+app
+app.use(express.json({limit: '5mb'}));  // to access data under req.body <-- middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 app.use(cors({origin:ENV.CLIENT_URL, credentials:true}));
@@ -35,7 +36,7 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-app.listen(PORT, ()=>{
+server.listen(PORT, ()=>{
     console.log("server started to listen at port: " + PORT ); 
     connectDB();
 });
