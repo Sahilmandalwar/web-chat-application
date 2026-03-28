@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { LogOutIcon, VolumeOffIcon, Volume2Icon } from "lucide-react";
-import { useAuthStore } from "../store/useAuthStore";
-import { useChatStore } from "../store/useChatStore";
+import { useAuthStore } from "../store/useAuthStore.js";
+import { useChatStore } from "../store/useChatStore.js";
 
 const mouseClickSound = new Audio("/sounds/mouse-click.mp3");
 
@@ -31,21 +31,22 @@ function ProfileHeader() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* AVATAR */}
-          <div className="avatar online">
-            <button
-              className="size-14 rounded-full overflow-hidden relative group"
-              onClick={() => fileInputRef.current.click()}
-            >
-              <img
-                src={selectedImg || authUser.profilePic || "/avatar.png"}
-                alt="User image"
-                className="size-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                <span className="text-white text-xs">Change</span>
-              </div>
-            </button>
-
+          <div className="avatar avatar-online">
+            <div className="w-14 rounded-full">
+              <button
+                className="size-14 rounded-full overflow-hidden relative group"
+                onClick={() => fileInputRef.current.click()}
+              >
+                <img
+                  src={selectedImg || authUser.profilePic || "/avatar.png"}
+                  alt="User image"
+                  className="size-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                  <span className="text-white text-xs">Change</span>
+                </div>
+              </button>
+            </div>
             <input
               type="file"
               accept="image/*"
@@ -57,7 +58,7 @@ function ProfileHeader() {
 
           {/* USERNAME & ONLINE TEXT */}
           <div>
-            <h3 className="text-slate-200 font-medium  max-w-[140px] truncate">
+            <h3 className="text-slate-200 font-medium  max-w-35 truncate">
               {authUser.fullName}
             </h3>
 
