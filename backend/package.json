@@ -12,6 +12,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.3.2",
     "resend": "^6.9.4",
+    "socket.io": "^4.8.3",
     "web-chat-application": "file:.."
   },
   "scripts": {
